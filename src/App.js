@@ -5,6 +5,9 @@ import { supabase } from './supabaseClient'
 import Auth from './Login'
 import Account from './Account'
 import Avatar from './Avatar'
+import TopNav from './topnav'
+import SideBar from './SideBar'
+import Dashboard from './dashboard'
 
 export default function Home() {
   const [session, setSession] = useState(null)
@@ -19,10 +22,15 @@ export default function Home() {
 
   return (
     <div>
-      <Avatar />
+      <TopNav />
+      <SideBar />
+      {/* <Dashboard /> */}
     </div>
-    // <div className="container" style={{ padding: '50px 0 100px 0' }}>
-    //{!session ? <Auth /> : <Account key={session.user.id} session={session} />}
-    //</div>
+    // <div>
+    //   <Avatar />
+    // </div>
+    //   <div className="container">
+    //     {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+    //   </div>
   )
 }
