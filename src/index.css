@@ -14,11 +14,6 @@ code {
     monospace;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-}
-
 button.primary {
   color: #FFF;
   width: 100%;
@@ -48,4 +43,9 @@ ul.side-navigation-panel-select li {
 
 .container {
   width: 70%;
+  margin-left: 1rem;
+}
+
+div.layoutdiv {
+  display: flex;
 }

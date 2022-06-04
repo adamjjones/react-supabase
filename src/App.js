@@ -1,5 +1,7 @@
-
-import './index.css'
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+// import './index.css'
+import './index1.css'
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
 import Auth from './Login'
@@ -9,7 +11,7 @@ import TopNav from './topnav'
 import SideBar from './SideBar'
 import Dashboard from './dashboard'
 
-export default function Home() {
+export default function Home({ image, collapsed, rtl, toggled, handleToggleSidebar }) {
   const [session, setSession] = useState(null)
 
   useEffect(() => {
@@ -20,17 +22,24 @@ export default function Home() {
     })
   }, [])
 
+  const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+  const toggleSideNav = () => {
+    // console.log(history)
+    setIsSideNavOpen(!isSideNavOpen)
+    console.log(isSideNavOpen)
+  }
+
+  const onToggle = () => {
+
+  }
+
   return (
     <div>
       <TopNav />
-      <SideBar />
-      {/* <Dashboard /> */}
+      <div className='layoutdiv'>
+        <SideBar />
+        <Dashboard />
+      </div>
     </div>
-    // <div>
-    //   <Avatar />
-    // </div>
-    //   <div className="container">
-    //     {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
-    //   </div>
   )
 }
