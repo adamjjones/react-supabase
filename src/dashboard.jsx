@@ -8,7 +8,7 @@ import {
 // import { firebaseAuth } from "../../provider/AuthProvider";
 
 const Dashboard = (props) => {
-  const cards = ["Announcements", "Badges", "Subscribed Product Activity", "Social Network"]
+  const cards = ["Announcements", "Badges", "Subscribed Product Activity", "Social Network", "Social Network", "Social Network", "Social Network", "Social Network", "Social Network"]
 
   // const { resuser } = useContext(firebaseAuth);
   return (

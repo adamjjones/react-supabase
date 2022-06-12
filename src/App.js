@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-// import './index.css'
-import './index1.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
+import './index.css'
+// import './index1.css'
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
 import Auth from './Login'
@@ -11,9 +13,15 @@ import TopNav from './topnav'
 import SideBar from './SideBar'
 import Dashboard from './dashboard'
 
+
 export default function Home({ image, collapsed, rtl, toggled, handleToggleSidebar }) {
   const [session, setSession] = useState(null)
 
+  const [isExpanded, setIsExpanded] = useState(true)
+
+  const toggleSideNav = () => {
+    setIsExpanded(prev => !prev)
+  }
   useEffect(() => {
     setSession(supabase.auth.session())
 
@@ -22,22 +30,12 @@ export default function Home({ image, collapsed, rtl, toggled, handleToggleSideb
     })
   }, [])
 
-  const [isSideNavOpen, setIsSideNavOpen] = useState(false);
-  const toggleSideNav = () => {
-    // console.log(history)
-    setIsSideNavOpen(!isSideNavOpen)
-    console.log(isSideNavOpen)
-  }
-
-  const onToggle = () => {
-
-  }
-
   return (
     <div>
-      <TopNav />
+      <TopNav toggleSideNav={toggleSideNav} />
       <div className='layoutdiv'>
-        <SideBar />
+        {isExpanded && <SideBar />}
+
         <Dashboard />
       </div>
     </div>

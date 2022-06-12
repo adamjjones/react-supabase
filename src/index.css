@@ -26,14 +26,14 @@ button.primary {
 nav.sb-topnav {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  /* justify-content: end; */
   background-color: red;
 }
 
 nav.side-navigation-panel {
   background-color: #0d6efd;
-  width: 30%;
-  /* height: 100vh; */
+  height: 100vh;
+  width: 20rem;
 }
 
 ul.side-navigation-panel-select li {
@@ -43,9 +43,23 @@ ul.side-navigation-panel-select li {
 
 .container {
   width: 70%;
-  margin-left: 1rem;
 }
 
 div.layoutdiv {
   display: flex;
+}
+
+i.fas {
+  padding-bottom: 30px;
+}
+
+/* .sidenav {
+  height: 100vh;
+  background-color: #399fd3 !important;
+  padding: 10px;
+  /* position: unset;
+} */
+
+.menu-item {
+  padding-top: 3rem;
 }
