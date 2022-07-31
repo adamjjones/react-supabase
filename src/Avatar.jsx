@@ -30,7 +30,7 @@ export default function Avatar({ url, size }) {
     const { data, error } = await supabase
       .storage
       .from('avatars')
-      .upload('public/avatar1.png', avatarFile, {
+      .upload('public/avatar2.png', avatarFile, {
         cacheControl: '3600',
         upsert: false
       })

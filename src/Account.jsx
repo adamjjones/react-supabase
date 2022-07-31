@@ -4,8 +4,8 @@ import Avatar from './Avatar'
 
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true)
-  const [username, setUsername] = useState(null)
-  const [website, setWebsite] = useState(null)
+  const [fullname, setFullName] = useState(null)
+  const [email, setEmail] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
 
   useEffect(() => {
@@ -18,8 +18,8 @@ export default function Account({ session }) {
       const user = supabase.auth.user()
 
       let { data, error, status } = await supabase
-        .from('profiles')
-        .select(`username, website, avatar_url`)
+        .from('User')
+        .select(fullname, email)
         .eq('id', user.id)
         .single()
 
@@ -28,8 +28,8 @@ export default function Account({ session }) {
       }
 
       if (data) {
-        setUsername(data.username)
-        setWebsite(data.website)
+        setUsername(data.fullname)
+        setWebsite(data.email)
         setAvatarUrl(data.avatar_url)
       }
     } catch (error) {
@@ -39,7 +39,7 @@ export default function Account({ session }) {
     }
   }
 
-  async function updateProfile({ username, website, avatar_url }) {
+  async function updateProfile({ user_type_id, fullname, email }) {
     try {
       setLoading(true)
       const user = supabase.auth.user()
@@ -52,7 +52,7 @@ export default function Account({ session }) {
         updated_at: new Date(),
       }
 
-      let { error } = await supabase.from('profiles').upsert(updates, {
+      let { error } = await supabase.from('User').upsert(updates, {
         returning: 'minimal', // Don't return the value after inserting
       })
 
@@ -68,25 +68,25 @@ export default function Account({ session }) {
 
   return (
     <div className="form-widget">
-      <Avatar
+      {/* <Avatar
         url={avatar_url}
         size={150}
         onUpload={(url) => {
           setAvatarUrl(url)
           updateProfile({ username, website, avatar_url: url })
         }}
-      />
+      /> */}
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled />
+        <input id="email" type="text" disabled />
       </div>
       <div>
         <label htmlFor="username">Name</label>
         <input
           id="username"
           type="text"
-          value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
+          value={fullname || ''}
+          onChange={(e) => setFullName(e.target.value)}
         />
       </div>
       <div>
@@ -94,8 +94,8 @@ export default function Account({ session }) {
         <input
           id="website"
           type="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
+          value={email || ''}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 

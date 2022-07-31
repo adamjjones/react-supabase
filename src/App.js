@@ -12,6 +12,7 @@ import Avatar from './Avatar'
 import TopNav from './topnav'
 import SideBar from './SideBar'
 import Dashboard from './dashboard'
+import Login from "./Login"
 
 
 export default function Home({ image, collapsed, rtl, toggled, handleToggleSidebar }) {
@@ -37,7 +38,10 @@ export default function Home({ image, collapsed, rtl, toggled, handleToggleSideb
         {isExpanded && <SideBar />}
 
         <Dashboard />
+        <Account />
       </div>
+      <Login />
+      {/* <Login /> */}
     </div>
   )
 }
